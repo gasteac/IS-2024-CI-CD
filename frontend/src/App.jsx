@@ -4,18 +4,25 @@ import { SignUp } from "./pages/SignUp";
 import { Home } from "./pages/Home";
 import { PublicRoute } from "./components/PublicRoute";
 import { PrivateRoute } from "./components/PrivateRoute";
+import { Navbar } from "./components/Navbar";
 
 function App() {
   return (
     <>
       <BrowserRouter>
+      <Navbar/>
         <Routes>
+          <Route
+            className="bg-black"
+            path="*"
+            element={<Navigate to="/signin" replace />}
+          />
           <Route element={<PublicRoute />}>
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
           </Route>
           <Route element={<PrivateRoute />}>
-            <Route path="/home" element={<Home />} />
+            <Route path="/" element={<Home />} />
           </Route>
         </Routes>
       </BrowserRouter>
