@@ -4,7 +4,7 @@ export const Navbar = () => {
   return (
     <div className="navbar bg-base-200 fixed">
       <div className="flex-1">
-        <Link to='/' className="btn btn-ghost text-xl">DracoSnape 2024</Link>
+        <Link to='/' className="btn btn-ghost text-xl">DracoSnape</Link>
       </div>
       <div className="flex-none">
         <div className="dropdown dropdown-end ">

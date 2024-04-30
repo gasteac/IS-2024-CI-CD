@@ -1,5 +1,5 @@
 ## IS 2024 - DracoSnape
-### Main Page![mainPage](https://github.com/gasteac/IS-2024-CI-CD/blob/main/frontend/public/images/pic.jpg?raw=true)
+![mainPage](https://github.com/gasteac/IS-2024-CI-CD/blob/main/frontend/public/images/pic.jpg?raw=true)
 
 #### Check it out here: [https://dracosnape.up.railway.app/](https://dracosnape.up.railway.app/)
 ### This project was made with:
@@ -11,6 +11,7 @@
  - Node.js + Express.js
  - Formik + Yup
  - Axios
+ - DaisyUI
  - JWT
 
 To test it out, clone the repository
