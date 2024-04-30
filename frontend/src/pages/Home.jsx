@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { logoutSuccess } from "../redux/user/userSlice";
 export const Home = () => {
   const currentUser = useSelector((state) => state.user.currentUser);
@@ -9,7 +8,6 @@ export const Home = () => {
 
   const handleSignOut = () => {
     try {
-      axios.post("/api/user/logout");
       dispatch(logoutSuccess());
       navigate("/signin");
     } catch (error) {
@@ -38,8 +36,7 @@ export const Home = () => {
           </p>
           <div className="modal-action">
             <form method="dialog">
-              {/* if there is a button in form, it will close the modal */}
-              <button onClick={handleSignOut} className="btn btn-outline btn-error mr-5">Logout</button>
+              <button onClick={handleSignOut} type='reset' className="btn btn-outline btn-error mr-5">Logout</button>
               <button className="btn">Close</button>
             </form>
           </div>
