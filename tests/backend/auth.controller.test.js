@@ -3,39 +3,63 @@ import request from "supertest";
 import mongoose from "mongoose";
 import { app, server } from "../../backend";
 import bcryptjs from "bcryptjs";
-// describe("POST /signin", () => {
-//   let res;
-//   beforeEach(async () => {
-//     res = await request(app).post("/api/auth/signinTest").send({
-//       email: "gasteac@gmail.com",
-//       password: "pacheca",
-//     });
-//   });
-
-//   it("should let an user signin", async () => {
-//     expect(res.statusCode).toEqual(200);
-//     expect(res.body).toHaveProperty("Message");
-//   });
-// });
-
-// afterAll(async () => {
-//   server.close();
-//   await mongoose.disconnect();
-//   mongoose.connection.close();
-// });
-
-// beforeEach(async () => {
-//   mongoose.connect(process.env.MONGO);
-// });
 
 beforeEach(async () => {
   await User.deleteMany({ username: "testuser" });
 });
 
-describe('POST /signin', () => {
+// SIGN UP
+describe("Auth Controller", () => {
+  describe("POST /signup", () => {
+    it("should create a new user and return the user data without the password", async () => {
+      const userData = {
+        username: "testuser",
+        email: "test@example.com",
+        password: "testpassword",
+      };
+
+      const response = await request(app)
+        .post("/api/auth/signup")
+        .send(userData)
+        .expect(201);
+
+      expect(response.body).toEqual(
+        expect.objectContaining({
+          username: userData.username,
+          email: userData.email,
+        })
+      );
+      expect(response.body.password).toBeUndefined();
+      expect(response.headers["set-cookie"]).toBeDefined();
+      // Verify that the user is saved in the database
+      const savedUser = await User.findOne({ email: userData.email });
+      expect(savedUser).toBeDefined();
+      expect(savedUser.username).toBe(userData.username);
+      expect(savedUser.password).not.toBe(userData.password);
+    });
+
+    it("should return an error if any required field is missing", async () => {
+      const userData = {
+        username: "testuser",
+        email: "",
+        password: "testpassword",
+      };
+
+      const response = await request(app)
+        .post("/api/auth/signup")
+        .send(userData)
+        .expect(400);
+      expect(response.body.message).toBe("All fields are required");
+    });
+  });
+});
+
+//SIGN IN
+
+describe("POST /signin", () => {
   it("should sign in a user and return a token", async () => {
     // Create a test user
-    const hashedPassword = bcryptjs.hashSync('pacheca', 10);
+    const hashedPassword = bcryptjs.hashSync("pacheca", 10);
     const testUser = new User({
       username: "testuser",
       email: "test@example.com",
@@ -68,7 +92,7 @@ describe('POST /signin', () => {
 
   it("should return an error if password is invalid", async () => {
     // Create a test user
-    const hashedPassword = bcryptjs.hashSync('pacheca', 10);
+    const hashedPassword = bcryptjs.hashSync("pacheca", 10);
     const testUser = new User({
       username: "testuser",
       email: "test@example.com",

@@ -1,4 +1,3 @@
-
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
@@ -16,8 +15,8 @@ const __dirname = path.resolve();
 export const app = express();
 app.use(express.json());
 app.use(cookieParser());
-app.use("/api/auth", authRoutes); 
- const port = process.env.PORT || 3000;
+app.use("/api/auth", authRoutes);
+const port = process.env.PORT || 3000;
 export const server = app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
