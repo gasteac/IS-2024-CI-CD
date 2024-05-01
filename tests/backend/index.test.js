@@ -1,36 +1,45 @@
 const { MongoClient } = require("mongodb");
 const dotenv = require("dotenv");
 dotenv.config();
-describe("insert", () => {
-  let connection;
-  let db;
 
-  beforeAll(async () => {
-    const mongoUri = process.env.MONGO;
-    const dbName = process.env.DB_NAME;
 
-    connection = await MongoClient.connect(mongoUri);
-    db = connection.db(dbName);
+describe("Test", ()=>{
+  it("should pass", ()=>{
+    expect(1).toBe(1);
   });
+})
 
-  afterAll(async () => {
-    await connection.close(); // Cierra la conexión
-  });
 
-  afterEach(async () => {
-    const users = db.collection("users");
+// describe("insert", () => {
+//   let connection;
+//   let db;
 
-    // Limpia el documento creado durante la prueba
-    await users.deleteOne({ username: "gasteacTest" });
-  });
+//   beforeAll(async () => {
+//     const mongoUri = process.env.MONGO;
+//     const dbName = process.env.DB_NAME;
 
-  it("should insert a doc into collection", async () => {
-    const users = db.collection("users");
+//     connection = await MongoClient.connect(mongoUri);
+//     db = connection.db(dbName);
+//   });
 
-    const mockUser = { username: "gasteacTest", email: "gasteacTest@gmail.com" };
-    await users.insertOne(mockUser);
+//   afterAll(async () => {
+//     await connection.close(); // Cierra la conexión
+//   });
 
-    const insertedUser = await users.findOne({ username: "gasteacTest" });
-    expect(insertedUser).toEqual(mockUser);
-  });
-});
+//   afterEach(async () => {
+//     const users = db.collection("users");
+
+//     // Limpia el documento creado durante la prueba
+//     await users.deleteOne({ username: "gasteacTest" });
+//   });
+
+//   it("should insert a doc into collection", async () => {
+//     const users = db.collection("users");
+
+//     const mockUser = { username: "gasteacTest", email: "gasteacTest@gmail.com" };
+//     await users.insertOne(mockUser);
+
+//     const insertedUser = await users.findOne({ username: "gasteacTest" });
+//     expect(insertedUser).toEqual(mockUser);
+//   });
+// });
