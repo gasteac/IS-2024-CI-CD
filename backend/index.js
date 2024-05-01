@@ -18,7 +18,7 @@ app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 const port = process.env.PORT || 3000;
 export const server = app.listen(port, () => {
-  console.log(`Server is running on port ${porta}`);
+  console.log(`Server is running on port ${port}`);
 });
 app.use(express.static(path.join(__dirname, "/frontend/dist")));
 app.get("*", (req, res) => {
