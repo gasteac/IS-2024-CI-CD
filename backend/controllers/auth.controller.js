@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 export const signinTest = async (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
-    next(errorHandler(400, "All fields are required"));
+    return next(errorHandler(400, "All fields are required"));
   }
     res
       .status(200).json({Message: 'Success'});
