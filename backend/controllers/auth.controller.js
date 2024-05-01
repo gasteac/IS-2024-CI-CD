@@ -3,6 +3,15 @@ import bcryptjs from "bcryptjs";
 import { errorHandler } from "../utils/error.js";
 import jwt from "jsonwebtoken";
 
+export const signinTest = async (req, res, next) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    next(errorHandler(400, "All fields are required"));
+  }
+    res
+      .status(200).json({Message: 'Success'});
+}
+
 export const signin = async (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
