@@ -13,12 +13,12 @@ mongoose
   .catch((err) => console.log(err));
 
 const __dirname = path.resolve();
-const app = express();
+export const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use("/api/auth", authRoutes); 
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
+ const port = process.env.PORT || 3000;
+export const server = app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 app.use(express.static(path.join(__dirname, "/frontend/dist")));
@@ -34,3 +34,5 @@ app.use((err, req, res, next) => {
     message,
   });
 });
+
+export default app;
