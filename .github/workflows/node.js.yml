@@ -22,12 +22,6 @@ jobs:
       JWT_SECRET: ${{ secrets.JWT_SECRET }}
       PORT: ${{ secrets.PORT }}
     steps:
-    - name: Read a variable
-      run: echo ${{ secrets.MONGO }}
-    - name: Read a variable
-      run: echo ${{ vars.MONGO }}
-    - name: Read a variable
-      run: echo ${{ secrets.JWT_SECRET }}
     - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
