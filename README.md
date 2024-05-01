@@ -14,7 +14,7 @@
  - DaisyUI
  - JWT
 
-To test it out, clone the repository
+To test it out, clone the repository xd
 ```
 git clone https://github.com/gasteac/IS-2024-CI-CD
 cd IS-2024-CI-CD
