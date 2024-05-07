@@ -36,7 +36,7 @@ export const signin = async (req, res, next) => {
       .cookie("access_token", token, {
         httpOnly: true,
       })
-      //podes cambiar rest por validUser._doc
+      // podes cambiar rest por validUser._doc
       .json(validUser._doc);
   } catch (error) {
     next(error);
