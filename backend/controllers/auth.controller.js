@@ -62,7 +62,7 @@ export const signup = async (req, res, next) => {
         httpOnly: true,
       })
       //para romper un test cambio esto por newUser._doc
-      .json(newUser._doc);
+      .json(rest);
   } catch (error) {
     next(error);
   }
