@@ -3,15 +3,6 @@ import bcryptjs from "bcryptjs";
 import { errorHandler } from "../utils/error.js";
 import jwt from "jsonwebtoken";
 
-// export const signinTest = async (req, res, next) => {
-//   const { email, password } = req.body;
-//   if (!email || !password) {
-//     return next(errorHandler(400, "All fields are required"));
-//   }
-//     res
-//       .status(200).json({Message: 'Success'});
-// }
-
 export const signin = async (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
@@ -36,8 +27,7 @@ export const signin = async (req, res, next) => {
       .cookie("access_token", token, {
         httpOnly: true,
       })
-      // podes cambiar rest por validUser._doc
-      .json(validUser._doc);
+      .json(rest);
   } catch (error) {
     next(error);
   }
@@ -71,7 +61,8 @@ export const signup = async (req, res, next) => {
       .cookie("access_token", token, {
         httpOnly: true,
       })
-      .json(rest);
+      //para romper un test cambio esto por newUser._doc
+      .json(newUser._doc);
   } catch (error) {
     next(error);
   }
