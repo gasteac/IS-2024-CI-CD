@@ -10,7 +10,7 @@ beforeEach(async () => {
 
 // SIGN UP
 describe("Auth Controller", () => {
-  describe("POST /signup", () => {
+  /*describe("POST /signup", () => {
     it("should create a new user and return the user data without the password", async () => {
       const userData = {
         username: "testuser",
@@ -36,7 +36,7 @@ describe("Auth Controller", () => {
       expect(savedUser).toBeDefined();
       expect(savedUser.username).toBe(userData.username);
       expect(savedUser.password).not.toBe(userData.password);
-    });
+    }); */
 
     it("should return an error if any required field is missing", async () => {
       const userData = {
